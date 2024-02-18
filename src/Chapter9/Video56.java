@@ -1,5 +1,6 @@
 package Chapter9;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Video56 {
@@ -82,16 +83,30 @@ public class Video56 {
 
 	public static void main(String[] args) {
 		System.out.println("run video 56");
+		boolean isQuit = false;
+		Scanner sc = new Scanner(System.in);
+		ArrayList<SinhVien> studentArr = new ArrayList<SinhVien>();
+		while (!isQuit)
+			try {
+				String mssv = inputMSSV();
+				String name = inputName();
+				double score = inputScore();
+				int age = inputAge();
 
-		try (Scanner sc = new Scanner(System.in)) {
-			String mssv = inputMSSV();
-			String name = inputName();
-			double score = inputScore();
-			int age = inputAge();
+				SinhVien sv1 = new SinhVien(mssv, name, score, age);
+				System.out.println(sv1);
+				studentArr.add(sv1);
 
-			SinhVien sv1 = new SinhVien(mssv, name, score, age);
-			System.out.println(sv1);
+				System.out.println("Do you want to input another student?");
+				String quit = sc.nextLine();
 
-		}
+				if (quit.toLowerCase().equals("no")) {
+					isQuit = true;
+					System.out.println(studentArr.toString());
+				}
+
+			} catch (Exception e) {
+
+			}
 	}
 }
